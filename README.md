@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pour lancer le projet faites :
 
-Things you may want to cover:
+`bundle install`
 
-* Ruby version
+`rails db:create`
 
-* System dependencies
+`rails db:migrate`
 
-* Configuration
+`rails db:seed`
 
-* Database creation
+`rails s`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`firefox http://localhost:3000/welcome/votre_nom`
