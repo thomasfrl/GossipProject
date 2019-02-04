@@ -1,6 +1,6 @@
 # README
 
-Pour lancer le projet faites :
+Pour lancer le projet ecrivez dans votre terminal à la racine du projet:
 
 `bundle install`
 
