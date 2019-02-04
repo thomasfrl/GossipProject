@@ -20,6 +20,19 @@
   </head>
 
   <body>
+    <header class="row navbar navbar-expand-sm navbar-light bg-light">
+      <a class="col-9 navbar-brand" href="/welcome">Gossip-Project</a>
+      <div class="col-3 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto my-sm-0">
+          <li class="nav-item active">
+              <a class="nav-link" href="/team">Team <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          </ul>
+      </div>
+  </header>
     <%= yield %>
   </body>
 </html>
