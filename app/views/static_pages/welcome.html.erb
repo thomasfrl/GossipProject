@@ -12,12 +12,10 @@
     </div>
 </header>
 
-<div class= "container">
-    <h2>Bonjour <%=params[:first_name] %></h2>
-    <p>Voici tous les potins :</p>
-    <ul>
-        <% Gossip.all.each do |gossip|%>
-        <li><%="#{gossip.user.name} : #{gossip.title}"%> <a href="/gossip/<%=gossip.id%>"><i class="fas fa-external-link-alt"></i></a></li>
-        <%end%>
-    </ul>
-</div>
+<h2>Bonjour <%=params[:first_name] %></h2>
+<p>Voici tous les potins :</p>
+<ul>
+    <% Gossip.all.each do |gossip|%>
+    <li><%="#{gossip.user.name} : #{gossip.title}"%> <a href="/gossip/<%=gossip.id%>"><i class="fas fa-external-link-alt"></i></a></li>
+    <%end%>
+</ul>

@@ -17,10 +17,8 @@ id = params[:id]
 gossip = Gossip.find(id.to_i)
 %>
 
-<div class= "container">
-    <h1>Voici votre potin : </h1>
-    <h3><%=gossip.title%></h3>
-    <p><%=gossip.content%>
-    </p>
-    <p>Et voici l'utilisateur qui a publié ce potin : <a href="/user/<%=gossip.user.id%>"> <%=gossip.user.name%> </a></p>
-</div>
+<h1>Voici votre potin : </h1>
+<h3><%=gossip.title%></h3>
+<p><%=gossip.content%>
+</p>
+<p>Et voici l'utilisateur qui a publié ce potin : <a href="/user/<%=gossip.user.id%>"> <%=gossip.user.name%> </a></p>
