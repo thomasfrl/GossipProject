@@ -7,12 +7,10 @@ class Gossip < ApplicationRecord
 
   validates :title,
   presence: true,
-  uniqueness: true,
+  #uniqueness: true,
   length: { minimum: 4 , message: "Le titre n'est pas assez long"  }
 
   validates :content,
   presence: true,
   length: { minimum: 20 , message: "Le potin n'est pas assez long"  }
-
-
 end
