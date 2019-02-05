@@ -8,18 +8,25 @@
 <% end %>
 
 <p>Voici tous les potins :</p>
-<ul>
+<div class="d-flex flex-wrap">
   <% @gossips.each do |gossip|%>
-  <li>
-    <%="#{gossip.user.name} : #{gossip.title}"%>
-    <a href="/gossips/<%=gossip.id%>"
-      ><i class="fas fa-external-link-alt"></i
-    ></a>
-  </li>
-  <%end%>
-</ul>
+    <div class="card p-2 m-2" style="width: 18rem;">
+      <%= image_tag get_random_image, class: "card-img-top" %>
 
-<p>
-  Voulez créer un nouveau potin ?
-  <a href="/gossips/new"><i class="fas fa-external-link-alt"></i><</a>
-</p>
+      <div class="card-body">
+        <h5 class="card-title"><%=gossip.title%></h5>
+        <p class="card-text">
+          Ce potin a été écrit par cette balance de <%=gossip.user.name%>.
+        </p>
+        <a href="/gossips/<%=gossip.id%>" class="btn btn-primary">Voir le potin</a>
+      </div>
+    </div>
+  <%end%>
+  <div class="card p-2 m-2" style="width: 18rem;">
+    <%= image_tag "", class: "card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title">Voulez-vous créer un nouveau potin?</h5>
+      <a href="/gossips/new" class="btn btn-primary">Nouveau potin </a>
+    </div>
+  </div>
+</div>
