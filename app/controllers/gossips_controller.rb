@@ -5,15 +5,15 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @users = User.all
     @gossip = Gossip.new() # avec xxx qui sont les données obtenues à partir du formulaire
     @gossip.title = params[:title]
     @gossip.content = params[:content]
     @gossip.user = User.find(params[:author])
-   
     if @gossip.save # essaie de sauvegarder en base @gossip
+      @gossips = Gossip.all
       render :index
     else
+      @users = User.all
       render :new
     end
     
@@ -25,5 +25,6 @@ class GossipsController < ApplicationController
   end
   
   def index
+    @gossips = Gossip.all
   end
 end
