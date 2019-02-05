@@ -9,4 +9,12 @@ class User < ApplicationRecord
   def name
     "#{self.first_name} #{last_name}"
   end
+
+  validates :email,
+  presence: true,
+  uniqueness: true,
+  format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
 end

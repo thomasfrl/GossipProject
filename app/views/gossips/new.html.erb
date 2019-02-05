@@ -1,24 +1,32 @@
 <% if @gossip.errors.any? %>
-  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
-  <ul>
-    <% @gossip.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h4>Alerte</h4>
+        <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+        <hr>
+        <ul>
+            <% @gossip.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>   
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 <% end %>
 
 <%= form_tag url_for(action: 'create'), method: "post" do %>
 
-    <%= label_tag 'Title' %>
+    <%= label_tag 'Titre' %>
     <%= text_field_tag 'title', @gossip.title %>
     <br /> <br />
 
-    <%= label_tag 'Content' %>
+    <%= label_tag 'Contenu' %>
     <%= text_area_tag 'content', @gossip.content %>
     <br /> <br />
-
-    <%= label_tag 'Author' %>
-    <%= text_field_tag 'author', @gossip.user %>
+   
+    <%= label_tag 'Auteur' %>
+    <%=select_tag 'author', options_for_select(@users.collect{ |u| [u.name, u.id] }) %>   
     <br /> <br />
 
     <%= submit_tag "Create Post" %>
