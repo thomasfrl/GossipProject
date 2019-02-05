@@ -1,0 +1,5 @@
+<h1>Voici votre potin : </h1>
+<h3><%=@gossip.title%></h3>
+<p><%=@gossip.content%>
+</p>
+<p>Et voici l'utilisateur qui a publié ce potin : <a href="/users/<%=@gossip.user.id%>"> <%=@gossip.user.name%> </a></p>

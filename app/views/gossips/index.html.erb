@@ -1,0 +1,9 @@
+<p>Voici tous les potins :</p>
+<ul>
+    <% Gossip.all.each do |gossip|%>
+        <%binding.pry%>
+        <li><%="#{gossip.user.name} : #{gossip.title}"%> <a href="/gossips/<%=gossip.id%>"><i class="fas fa-external-link-alt"></i></a></li>
+    <%end%>
+</ul>
+
+<p>Voulez créer un nouveau potin ? <a href="/gossips/new"><i class="fas fa-external-link-alt"></i><</a> </p>

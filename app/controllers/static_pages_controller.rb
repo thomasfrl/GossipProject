@@ -8,10 +8,4 @@ class StaticPagesController < ApplicationController
   def welcome
 
   end
-  def gossip
-    
-  end
-  def user
-    
-  end
 end

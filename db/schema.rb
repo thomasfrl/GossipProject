@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2019_02_04_150104) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "gossips", "users"
   add_foreign_key "multi_pms", "users"
   add_foreign_key "tags_by_potins", "gossips"
   add_foreign_key "tags_by_potins", "tags"
