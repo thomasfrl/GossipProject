@@ -1,6 +1,6 @@
 <% if defined? @gossip %>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <p>Nous avons réussi à créer le potin</p>
+  <p>L'opération a été un succès</p>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -10,7 +10,7 @@
 <p>Voici tous les potins :</p>
 <div class="d-flex flex-wrap">
   <% @gossips.each do |gossip|%>
-    <div class="card p-2 m-2" style="width: 18rem;">
+    <div class="card p-2 m-2" style="width: 30rem;">
       <%= image_tag get_random_image, class: "card-img-top" %>
 
       <div class="card-body">
@@ -18,7 +18,11 @@
         <p class="card-text">
           Ce potin a été écrit par cette balance de <%=gossip.user.name%>.
         </p>
-        <a href="/gossips/<%=gossip.id%>" class="btn btn-primary">Voir le potin</a>
+        <div class="d-flex flex-wrap">
+          <a href="/gossips/<%=gossip.id%>" class="btn btn-primary m-1">Voir le potin<a>
+          <a href="<%=edit_gossip_path(gossip.id)%>" class="btn btn-warning m-1">Editer le potin</a>
+          <a href="<%=gossip_path(gossip.id) %>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Suprimer le potin</a>
+        </div>
       </div>
     </div>
   <%end%>

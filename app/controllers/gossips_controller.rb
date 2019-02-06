@@ -25,6 +25,35 @@ class GossipsController < ApplicationController
   end
   
   def index
-    @gossips = Gossip.all
+    @gossips = Gossip.order(:id)
   end
+
+  def destroy
+    @gossip = Gossip.find(params[:id])
+    @gossip.destroy
+    redirect_to gossips_path
+
+  end
+
+  def update
+    @gossip = Gossip.find(params[:id])
+    @gossip.title = params[:title]
+    @gossip.content = params[:content]
+    @gossip.user = User.find(params[:author])
+
+    if @gossip.save # essaie de sauvegarder en base @gossip
+      @gossips = Gossip.order(:id)
+      render :index  
+    else
+      @users = User.all
+      render :edit
+    end
+
+  end
+
+  def edit
+    @gossip = Gossip.find(params[:id])
+    @users = User.all
+  end
+
 end

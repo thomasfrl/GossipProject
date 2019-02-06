@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   resources :gossips do
     resources :comments, only: [:new, :create, :index, :destroy]
   end  
-  resources :users
+
+  resources :users, only: [:show]
+  
+  resources :cities, only: [:show] do 
+    resources :gossips, only: [:show]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -16,7 +16,7 @@ RSpec.describe Gossip, type: :model do
     end
     describe "#title" do
       it { expect(@gossip).to validate_presence_of(:title) }
-      it { expect(@gossip).to validate_uniqueness_of(:title) }
+      it { expect(@gossip).to validate_uniqueness_of(:title).case_insensitive }
       it { is_expected.to allow_value("un_titre_assez_long").for(:title) }
       it { is_expected.to_not allow_value("jk").for(:title) }
     end
