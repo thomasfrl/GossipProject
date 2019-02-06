@@ -1,12 +1,6 @@
-<h1><%=@user.name%> </h1>
-<ul>
-    <li>Son adresse : <%=@user.city.adress%></li>
-    <li>Son email : <%=@user.email%></li>
-    <li>Son age : <%=@user.age%> ans</li>
-    <li>Sa description : <%=@user.description%></li>
-</ul>
-
-<p>Et voici tous ces potins</p>
+<h1><%=@city.name%></h1>
+<p>
+<p>Voici tous les potins :</p>
 <div class="d-flex flex-wrap">
   <% @gossips.each do |gossip|%>
     <div class="card p-2 m-2" style="width: 30rem;">

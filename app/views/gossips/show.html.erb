@@ -2,4 +2,42 @@
 <h3><%=@gossip.title%></h3>
 <p><%=@gossip.content%>
 </p>
-<p>Et voici l'utilisateur qui a publié ce potin : <a href="/users/<%=@gossip.user.id%>"> <%=@gossip.user.name%> </a></p>
+<p>Et voici l'utilisateur qui a publié ce potin : <a href="<%=user_path(@user.id)%>"> <%=@user.name%> </a></p>
+<p>Et voici la ville où vit l'auteur qui a publié ce potin : <a href="<%=city_path(@city.id)%>"> <%=@city.name%> </a></p>
+
+<h3>Liste des commentaires</h3>
+<a href="/comments/new" class="btn btn-primary m-1">Ajouter un nouveau commentaire</a>       
+<%@comments.each do |comment|%>
+    <div class="card p-1 col-12 m-2">
+        <blockquote class="blockquote mb-0 card-body">
+            <p><%=comment.content%></p>
+            <footer class="blockquote-footer">
+                <small class="text-muted">
+                    Posté par <cite title="Source Title"><%=comment.user.name%></cite>
+                </small>
+            </footer>
+        </blockquote>
+        <div>
+          <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
+          <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Supprimer le commentaire</a>
+          <a href="/comments/new" class="btn btn-primary m-1">Commenter</a>       
+        </div>
+    </div>
+    <%comment.comments.each do |c|%>
+        <div class="card p-1 col-8 m-2 float-right" style="font">
+            <blockquote class="blockquote mb-0 card-body">
+                <p><%=c.content%></p>
+                <footer class="blockquote-footer">
+                    <small class="text-muted">
+                        Posté par <cite title="Source Title"><%=c.user.name%></cite>
+                    </small>
+                </footer>
+            </blockquote>
+            <div>
+                <a href="/comments/<%=c.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
+                <a href="/comments/<%=c.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Supprimer le commentaire</a>
+            </div>
+        </div>
+    <%end%>
+<%end%>
+

@@ -20,8 +20,11 @@ class GossipsController < ApplicationController
   end
  
   def show
-    id = params[:id]
-    @gossip = Gossip.find(id.to_i)
+    @gossip = Gossip.find(params[:id])
+    @user = @gossip.user
+    @city = @user.city
+    @comments = @gossip.comments
+
   end
   
   def index

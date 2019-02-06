@@ -32,8 +32,8 @@ end
 
 #Create Gossip
 #checke u moins un tag par gossip
-10.times do
-  gossip = Gossip.create!(title: Faker::HarryPotter.book, content: Faker::HarryPotter.quote, user_id: User.all.ids.sample)
+10.times do |i|
+  gossip = Gossip.create!(title: "#{Faker::HarryPotter.book} #{i}", content: Faker::HarryPotter.quote, user_id: User.all.ids.sample)
 end
 
 #Create tags by potin
@@ -53,13 +53,13 @@ end
 
 #create comments
 i = 0
-10.times do
+50.times do
   # comment = Comment.create!(content: Faker::Simpsons.quote , user_id: User.all.ids.sample, gossip_id: Gossip.all.ids.sample)
   comment = Comment.create!(content: Faker::Simpsons.quote, user_id: User.all.ids.sample, commentable_type: Gossip.name, commentable_id: Gossip.all.ids.sample)
   
 end
 
-10.times do
+50.times do
   # comment = Comment.create!(content: Faker::Simpsons.quote , user_id: User.all.ids.sample, gossip_id: Gossip.all.ids.sample)
   comment = Comment.create!(content: Faker::Simpsons.quote, user_id: User.all.ids.sample,commentable_type: Comment.name, commentable_id: Comment.all.ids.sample)
 end

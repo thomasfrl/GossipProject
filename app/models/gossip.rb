@@ -1,9 +1,9 @@
 class Gossip < ApplicationRecord
   belongs_to :user
-  has_many :tags_by_potins
+  has_many :tags_by_potins, dependent: :destroy
   has_many :tags, through: :tags_by_potins
-  has_many :comments, as: :commentable
-  has_many :likes
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :title,
   presence: true,

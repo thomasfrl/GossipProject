@@ -4,15 +4,13 @@ Rails.application.routes.draw do
   get 'contact', to: 'static_pages#contact'
   get 'welcome(/:first_name)', to: 'static_pages#welcome'
 
-  resources :gossips do
-    resources :comments, only: [:new, :create, :index, :destroy]
-  end  
+  resources :gossips
+
+  resources :comments, except: [:index, :show]
 
   resources :users, only: [:show]
   
-  resources :cities, only: [:show] do 
-    resources :gossips, only: [:show]
-  end
+  resources :cities, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
