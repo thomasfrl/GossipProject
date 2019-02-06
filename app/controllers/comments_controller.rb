@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
 
-  def new
-    @comment = Comment.new
-  end
-
   def create
-
+    commit = params[:commit]
+    if commit =~ /potin/
+      @comment = Comment.create(content: params[:content], user_id: User.all.ids.sample,commentable_type: Gossip.name, commentable_id: commit.split[-1])
+    else
+      @comment = Comment.create(content: params[:content], user_id: User.all.ids.sample,commentable_type: Comment.name, commentable_id: commit.split[-1])
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

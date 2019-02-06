@@ -24,6 +24,7 @@ class GossipsController < ApplicationController
     @user = @gossip.user
     @city = @user.city
     @comments = @gossip.comments
+    @comment = Comment.new
 
   end
   
