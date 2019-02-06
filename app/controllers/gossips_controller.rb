@@ -1,5 +1,6 @@
 class GossipsController < ApplicationController
   def new
+    @tags = Tag.all
     @users = User.all
     @gossip = Gossip.new
   end
@@ -9,10 +10,13 @@ class GossipsController < ApplicationController
     @gossip.title = params[:title]
     @gossip.content = params[:content]
     @gossip.user = User.find(params[:author])
+    @gossip.tags << Tag.find(params[:tag])
+
     if @gossip.save # essaie de sauvegarder en base @gossip
       @gossips = Gossip.all
       render :index
     else
+      @tags = Tag.all
       @users = User.all
       render :new
     end
@@ -25,6 +29,7 @@ class GossipsController < ApplicationController
     @city = @user.city
     @comments = @gossip.comments
     @comment = Comment.new
+    @tags = @gossip.tags
 
   end
   

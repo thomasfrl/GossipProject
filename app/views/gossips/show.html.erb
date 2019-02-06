@@ -2,6 +2,16 @@
 <h3><%=@gossip.title%></h3>
 <p><%=@gossip.content%>
 </p>
+<h4>Tags associés à ce potin</h4>
+<div class="d-flex flex-wrap">
+    <%@tags.each do |tag|%>
+    <div class="card m-2 p-2" style="width: 10rem;">
+        <p class="card-text d-flex justify-content-center"><%=tag.title%></p>
+    </div>
+    <%end%>
+</div>
+    <br /> <br />
+
 <p>Et voici l'utilisateur qui a publié ce potin : <a href="<%=user_path(@user.id)%>"> <%=@user.name%> </a></p>
 <p>Et voici la ville où vit l'auteur qui a publié ce potin : <a href="<%=city_path(@city.id)%>"> <%=@city.name%> </a></p>
     <br /> <br />
@@ -38,7 +48,7 @@
 
             <% end %>
           <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
-          <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Supprimer le commentaire</a>
+          <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
         </div>
     </div>
     <%comment.comments.each do |c|%>
@@ -53,7 +63,7 @@
             </blockquote>
             <div>
                 <a href="/comments/<%=c.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
-                <a href="/comments/<%=c.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Supprimer le commentaire</a>
+                <a href="/comments/<%=c.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
             </div>
         </div>
     <%end%>
