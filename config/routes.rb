@@ -6,10 +6,12 @@ Rails.application.routes.draw do
 
   resources :gossips do
     resources :comments, only: [:create]
+    resources :likes, only: [:create, :destroy]
   end
 
   resources :comments, except: [:index, :show] do
     resources :comments, only: [:create]
+    resources :likes, only: [:create, :destroy]
   end
 
   resources :users, only: [:show, :new, :create]
