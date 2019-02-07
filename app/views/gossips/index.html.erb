@@ -1,10 +1,10 @@
-<% if defined? @gossip %>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <p>L'opération a été un succès</p>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<% if flash[:alert] != nil %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <p>L'opération <%=flash[:alert]%> a été un succès</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 <% end %>
 
 <p>Voici tous les potins :</p>

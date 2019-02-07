@@ -9,7 +9,7 @@ class GossipsController < ApplicationController
     @gossip = Gossip.new() # avec xxx qui sont les données obtenues à partir du formulaire
     @gossip.title = params[:title]
     @gossip.content = params[:content]
-    @gossip.user = User.find(params[:author])
+    @gossip.user = current_user
     @gossip.tags << Tag.find(params[:tag])
 
     if @gossip.save # essaie de sauvegarder en base @gossip
@@ -48,7 +48,6 @@ class GossipsController < ApplicationController
     @gossip = Gossip.find(params[:id])
     @gossip.title = params[:title]
     @gossip.content = params[:content]
-    @gossip.user = User.find(params[:author])
 
     if @gossip.save # essaie de sauvegarder en base @gossip
       @gossips = Gossip.order(:id)

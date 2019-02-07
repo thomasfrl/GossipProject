@@ -25,10 +25,6 @@
     <%= text_area_tag 'content', @gossip.content, class: 'form-control' %>
     <br /> <br />
    
-    <%= label_tag 'Auteur' %>
-    <%=select_tag 'author', options_for_select(@users.collect{ |u| [u.name, u.id] }), class: 'form-control' %>   
-    <br /> <br />
-
     <%= label_tag 'Tag' %>
     <%=select_tag 'tag', options_for_select(@tags.collect{ |t| [t.title, t.id] }), class: 'form-control' %>   
     <br /> <br />

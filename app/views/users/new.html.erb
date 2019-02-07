@@ -1,0 +1,60 @@
+<% if @user.errors.any? %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h4>Alerte</h4>
+        <p>Nous n'avons pas réussi à valider votre inscription pour la (ou les) raison(s) suivante(s) :</p>
+        <hr>
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>   
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+<% end %>
+
+
+
+<h1>Bienvenue sur le formulaire d'inscription</h1>
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+    <%= label_tag 'Prénom' %>
+    <%= text_field_tag 'first_name', @user.first_name, class: 'form-control' %>
+    <br /> <br />
+
+    <%= label_tag 'Nom' %>
+    <%= text_field_tag 'last_name', @user.last_name, class: 'form-control' %>
+    <br /> <br />
+
+    <%= label_tag 'Age' %>
+    <%= text_field_tag 'age', @user.age, class: 'form-control' %>
+    <br /> <br />
+
+    <%= label_tag 'Email' %>
+    <%= text_field_tag 'email', @user.email, class: 'form-control' %>
+    <br /> <br />
+
+    <%= label_tag 'Description' %>
+    <%= text_field_tag 'description', @user.description, class: 'form-control' %>
+    <br /> <br />
+
+    <%= label_tag 'Ville' %>
+    <%=select_tag 'city', options_for_select(@cities.collect{ |c| [c.name, c.id] }), class: 'form-control' %>   
+    <br /> <br />
+
+    <%= label_tag 'Mot de passe' %>
+    <%= password_field_tag 'password', @user.description, class: 'form-control' %>
+    <br /> <br />
+
+    <%= label_tag 'Confirmer votre mot de passe' %>
+    <%= password_field_tag 'password_confirmation', @user.description, class: 'form-control' %>
+    <br /> <br />
+
+
+    <%= submit_tag "Valider l'inscription ", class: 'btn btn-primary'%>
+
+<% end %>
+
