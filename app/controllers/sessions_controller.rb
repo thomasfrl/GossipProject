@@ -21,5 +21,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
+    flash[:alert] = 'Deconnexion'
+    redirect_to gossips_path
+
   end
 end

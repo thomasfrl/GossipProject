@@ -6,7 +6,19 @@
     </button>
   </div>
 <% end %>
+<% if flash[:danger] != nil %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h4>Alerte</h4>
+      <p><%=flash[:danger]%></p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+<% end %>
 
+<%if session[:user_id] != nil%>
+  <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+<%end%>
 <p>Voici tous les potins :</p>
 <div class="d-flex flex-wrap">
   <% @gossips.each do |gossip|%>

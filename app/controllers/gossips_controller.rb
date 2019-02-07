@@ -1,4 +1,7 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:show, :new, :create, :destroy, :update, :edit]
+  before_action :valid_user, only: [:destroy, :update, :edit]
+
   def new
     @tags = Tag.all
     @users = User.all
@@ -40,6 +43,7 @@ class GossipsController < ApplicationController
   def destroy
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
+    flash[:alert] = 'Supression du potin'
     redirect_to gossips_path
 
   end
@@ -63,5 +67,6 @@ class GossipsController < ApplicationController
     @gossip = Gossip.find(params[:id])
     @users = User.all
   end
+
 
 end

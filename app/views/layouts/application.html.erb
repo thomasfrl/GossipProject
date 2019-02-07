@@ -51,10 +51,18 @@
           <ul class="navbar-nav mr-auto my-sm-0">
             <li class="nav-item active"><a class="nav-link" href="/team">Team <span class="sr-only">(current)</span></a></li>
             <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="/users/new">S'inscrire</a></li>
-            <li class="nav-item"><a class="nav-link" href="/sessions/new">Se connecter</a></li>
-
           </ul>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              </button>
+              <div class="dropdown-menu" aria-labelledby="Users">
+                  <%=link_to "S'inscrire", new_user_path, :class => "dropdown-item"%>
+                  <%=link_to "Se connecter", new_session_path, :class => "dropdown-item"%>
+                  <%if session[:user_id] != nil%>
+                    <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, :class => "dropdown-item" %>
+                  <%end%>
+              </div>
+           </div>
         </div>
       </header>
       <div class="ml-2 mt-2">

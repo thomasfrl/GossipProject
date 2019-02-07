@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :destroy, :update, :edit]
+  before_action :valid_user_comment, only: [:destroy, :update, :edit]
 
   def create
     gossip = params[:gossip_id]
@@ -11,13 +13,15 @@ class CommentsController < ApplicationController
       type = "Comment"
       id =  comment
     end
-    @comment = Comment.create(content: params[:content], user_id: User.all.ids.sample,commentable_type: type, commentable_id: id)
+    @comment = Comment.create(content: params[:content], user_id: current_user.id, commentable_type: type, commentable_id: id)
+    flash[:alert] = 'Creation du commentaire'
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+    flash[:alert] = 'Supression du commentaire'
     redirect_back(fallback_location: root_path)
   end
 
@@ -31,6 +35,7 @@ class CommentsController < ApplicationController
 
     @comment.content = params[:content]
     @comment.save # essaie de sauvegarder en base @gossip
+    flash[:alert] = 'Mise à jour du commentaire'
     redirect_to "/gossips/#{id}"
 
   end
