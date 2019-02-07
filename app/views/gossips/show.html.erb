@@ -16,11 +16,25 @@
   </div>
 <% end %>
 
+<div class='d-flex align-items-end'>
+    <h1>Voici votre potin : </h1>
+    <%= link_to(gossip_likes_path(@gossip.id), method: :post, :class => 'm-2 ') do %>
+        <i class='fas fa-thumbs-up' style='font-size:48px;color:blue'></i>
+    <% end %>
+    <p class='m-0 p-0' style='font-size:48px;color:blue'> <%=@gossip.likes.size%> </p>
+    <%= link_to(gossip_like_path(@gossip.id), method: :delete, :class => 'm-2 ') do %>
+        <i class='fas fa-thumbs-up' style='font-size:48px;color:red'></i>
+    <% end %>
+</div>
 
-<h1>Voici votre potin : </h1>
-<h3><%=@gossip.title%></h3>
-<p><%=@gossip.content%>
-</p>
+    <div class="card p-2 m-2">
+      <%= image_tag get_random_image, class: "card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title"><%=@gossip.title%></h5>
+        <p class="card-text"><%=@gossip.content%></p>
+      </div>
+    </div>
+
 <h4>Tags associés à ce potin</h4>
 <div class="d-flex flex-wrap">
     <%@tags.each do |tag|%>
@@ -66,8 +80,16 @@
                 <%= submit_tag "Publier" , class: 'btn btn-primary'%>
 
             <% end %>
-          <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
-          <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+            <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
+            <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+            <%= link_to(comment_likes_path(comment.id), method: :post, :class => 'm-2 ') do %>
+                <i class='fas fa-thumbs-up' style='font-size:48px;color:blue'></i>
+            <% end %>
+            <p class='m-2' style='font-size:48px;color:blue'> <%=comment.likes.size%> </p>
+            <%= link_to(comment_like_path(comment.id), method: :delete, :class => 'm-2 ') do %>
+                <i class='fas fa-thumbs-up' style='font-size:48px;color:red'></i>
+            <% end %>
+
         </div>
     </div>
     <%comment.comments.each do |c|%>
@@ -80,9 +102,16 @@
                     </small>
                 </footer>
             </blockquote>
-            <div>
+            <div class="d-flex align-items-center">
                 <a href="/comments/<%=c.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
                 <a href="/comments/<%=c.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+                <%= link_to(comment_likes_path(c.id), method: :post, :class => 'm-2 ') do %>
+                    <i class='fas fa-thumbs-up' style='font-size:48px;color:blue'></i>
+                <% end %>
+                <p class='m-2' style='font-size:48px;color:blue'> <%=c.likes.size%> </p>
+                <%= link_to(comment_like_path(comment.id), method: :delete, :class => 'm-2 ') do %>
+                    <i class='fas fa-thumbs-up' style='font-size:48px;color:red'></i>
+                <% end %>
             </div>
         </div>
     <%end%>

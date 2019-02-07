@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :gossips, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage", dependent: :destroy
-  
+  has_many :likes
   has_many :multi_pms, dependent: :destroy
   has_many :private_messages, through: :multi_pms
   def name
