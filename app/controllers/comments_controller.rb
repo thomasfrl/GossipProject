@@ -1,12 +1,17 @@
 class CommentsController < ApplicationController
 
   def create
-    commit = params[:commit]
-    if commit =~ /potin/
-      @comment = Comment.create(content: params[:content], user_id: User.all.ids.sample,commentable_type: Gossip.name, commentable_id: commit.split[-1])
+    gossip = params[:gossip_id]
+    comment = params[:comment_id]
+
+    if comment == nil
+      type = "Gossip"
+      id = gossip
     else
-      @comment = Comment.create(content: params[:content], user_id: User.all.ids.sample,commentable_type: Comment.name, commentable_id: commit.split[-1])
+      type = "Comment"
+      id =  comment
     end
+    @comment = Comment.create(content: params[:content], user_id: User.all.ids.sample,commentable_type: type, commentable_id: id)
     redirect_back(fallback_location: root_path)
   end
 

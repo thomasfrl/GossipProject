@@ -16,12 +16,12 @@
 <p>Et voici la ville où vit l'auteur qui a publié ce potin : <a href="<%=city_path(@city.id)%>"> <%=@city.name%> </a></p>
     <br /> <br />
 
-<%= form_tag('/comments', method: "post") do %>
+<%= form_tag("/gossips/#{@gossip.id}/comments", method: "post") do %>
 
     <%= label_tag 'Nouveau commentaire' %>
     <%= text_area_tag 'content', @comment.content, class: 'form-control' %>
     <br />
-    <%= submit_tag "Ecrire un nouveau commentaire pour le potin numéro #{@gossip.id} " , class: 'btn btn-primary'%>
+    <%= submit_tag "Publier" , class: 'btn btn-primary'%>
 
 <% end %>
     <br /> <br />
@@ -39,12 +39,12 @@
             </footer>
         </blockquote>
         <div class="d-flex align-items-end">
-            <%= form_tag('/comments', method: "post") do %>
+            <%= form_tag("/comments/#{comment.id}/comments", method: "post") do %>
 
                 <%= label_tag 'Nouveau commentaire' %>
                 <%= text_area_tag 'content', @comment.content, class: 'form-control' %>
                 <br />
-                <%= submit_tag "Ecrire un nouveau commentaire pour le commentaire numéro #{comment.id} " , class: 'btn btn-primary'%>
+                <%= submit_tag "Publier" , class: 'btn btn-primary'%>
 
             <% end %>
           <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>

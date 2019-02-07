@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   get 'contact', to: 'static_pages#contact'
   get 'welcome(/:first_name)', to: 'static_pages#welcome'
 
-  resources :gossips
+  resources :gossips do
+    resources :comments, only: [:create]
+  end
 
-  resources :comments, except: [:index, :show]
+  resources :comments, except: [:index, :show] do
+    resources :comments, only: [:create]
+  end
 
   resources :users, only: [:show]
   
