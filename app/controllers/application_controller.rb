@@ -16,20 +16,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def valid_user_like
-    if params[:comment_id]
-      user = Comment.find(params[:comment_id]).user
-    else
-      user = Comment.find(params[:gossip_id]).user
-    end
-
-    unless current_user == user
-      flash[:danger] = "Vous ne pouvez pas modifier ou supprimer un élément que vous n'avez pas créé."
-      redirect_back(fallback_location: root_path)
-    end
-  end
-
-
   def authenticate_user
     unless current_user
       flash[:danger] = "Please log in."

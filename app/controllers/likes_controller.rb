@@ -1,6 +1,5 @@
 class LikesController < ApplicationController
   before_action :authenticate_user
-  #before_action :valid_user_like
 
   def create
     like = Like.new
@@ -21,7 +20,7 @@ class LikesController < ApplicationController
     if liked == false
       like.user = current_user
       like.save
-      flash[:alert] = 'Like bien pris en compte'
+      flash[:alert] = 'Like bien pris ajouté'
       redirect_back(fallback_location: root_path)
     else
       flash[:danger] = 'Vous avez déjà liké le contenu'

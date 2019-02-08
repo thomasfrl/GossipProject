@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 MultiPm.destroy_all
 TagsByPotin.destroy_all
+Like.destroy_all
 Gossip.destroy_all
 Comment.destroy_all
 User.destroy_all
 PrivateMessage.destroy_all
-Like.destroy_all
 City.destroy_all
 Tag.destroy_all
 
@@ -26,8 +26,8 @@ end
 end
 
 #Create User
-10.times do
-  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , description: Faker::HowIMetYourMother.quote, email: Faker::Internet.email, age: Faker::Number.between(18, 75), city_id: City.all.ids.sample)
+10.times do |i|
+  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , description: Faker::HowIMetYourMother.quote, email: "#{Faker::Internet.email}#{i}", age: Faker::Number.between(18, 75), city_id: City.all.ids.sample, password: "motdepasse")
 end
 
 #Create Gossip
@@ -67,11 +67,11 @@ end
 #create likes
 #de façon aléatoire va rajouter 1 like à 1 comment ou à 1 like
 i = 0
-20.times do
+100.times do
   if i % rand(2..3) == 0
-    like = Like.create!(comment_id: Comment.all.ids.sample)
+    like = Like.create!(comment_id: Comment.all.ids.sample, user_id: User.all.ids.sample)
   else
-    like = Like.create!(gossip_id: Gossip.all.ids.sample) #comment_id: Comment.ids.first(2).sample) 
+    like = Like.create!(gossip_id: Gossip.all.ids.sample, user_id: User.all.ids.sample) #comment_id: Comment.ids.first(2).sample) 
   end
   i += 1
 end

@@ -5,8 +5,6 @@ module SessionsHelper
 
   def log_in(user)
     session[:user_id] = user.id
-    puts "$"*60
-    puts session
   end
 
   def valid_user?(user)

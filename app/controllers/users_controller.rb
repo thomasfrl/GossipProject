@@ -20,10 +20,13 @@ class UsersController < ApplicationController
         @user.password = params[:password]
         @user.password_confirmation = params[:password_confirmation]
 
-        if @user.save # essaie de sauvegarder en base @users
+        if @user.save # essaie de sauvegarder en base @user      
+            log_in(@user)
+            flash[:alert] = 'Connexion et inscription'
             redirect_to gossips_path
         else
             @cities = City.all
+            flash.now[:danger] = 'Inscription non réussi'
             render :new
         end
     end
