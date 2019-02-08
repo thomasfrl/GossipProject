@@ -1,26 +1,15 @@
-<% if flash[:alert] != nil %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <p>L'opération <%=flash[:alert]%> a été un succès</p>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-<% end %>
-<% if flash[:danger] != nil %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <h4>Alerte</h4>
-      <p><%=flash[:danger]%></p>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-<% end %>
-
 <%if session[:user_id] != nil%>
   <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
 <%end%>
 <p>Voici tous les potins :</p>
 <div class="d-flex flex-wrap">
+  <div class="card p-2 m-2" style="width: 30rem;">
+    <%= image_tag "", class: "card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title">Voulez-vous créer un nouveau potin?</h5>
+      <a href="/gossips/new" class="btn btn-primary">Nouveau potin </a>
+    </div>
+  </div>
   <% @gossips.each do |gossip|%>
     <div class="card p-2 m-2" style="width: 30rem;">
       <%= image_tag get_random_image, class: "card-img-top" %>
@@ -38,11 +27,4 @@
       </div>
     </div>
   <%end%>
-  <div class="card p-2 m-2" style="width: 18rem;">
-    <%= image_tag "", class: "card-img-top" %>
-    <div class="card-body">
-      <h5 class="card-title">Voulez-vous créer un nouveau potin?</h5>
-      <a href="/gossips/new" class="btn btn-primary">Nouveau potin </a>
-    </div>
-  </div>
 </div>

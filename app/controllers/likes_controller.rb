@@ -20,7 +20,7 @@ class LikesController < ApplicationController
     if liked == false
       like.user = current_user
       like.save
-      flash[:alert] = 'Like bien pris ajouté'
+      flash[:success] = 'Like bien pris ajouté'
       redirect_back(fallback_location: root_path)
     else
       flash[:danger] = 'Vous avez déjà liké le contenu'
@@ -55,7 +55,7 @@ class LikesController < ApplicationController
       redirect_back(fallback_location: root_path)
     else
       like.destroy
-      flash[:alert] = 'Like bien supprimé'
+      flash[:success] = 'Like bien supprimé'
       redirect_back(fallback_location: root_path)
     end
   end

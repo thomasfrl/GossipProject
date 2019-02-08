@@ -57,8 +57,9 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="Users">
                   <%=link_to "S'inscrire", new_user_path, :class => "dropdown-item"%>
-                  <%=link_to "Se connecter", new_session_path, :class => "dropdown-item"%>
-                  <%if session[:user_id] != nil%>
+                  <%if session[:user_id] == nil%>
+                    <%=link_to "Se connecter", new_session_path, :class => "dropdown-item"%>
+                  <%else%>
                     <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, :class => "dropdown-item" %>
                   <%end%>
               </div>
@@ -66,6 +67,15 @@
         </div>
       </header>
       <div class="ml-2 mt-2">
+        <%flash.each do |name,msg|%>
+          <div class="alert alert-<%=name%> alert-dismissible fade show" role="alert">
+              <h4>Alerte</h4>
+              <p><%= raw(msg)%></p>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
     </div>

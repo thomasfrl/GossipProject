@@ -14,14 +14,14 @@ class CommentsController < ApplicationController
       id =  comment
     end
     @comment = Comment.create(content: params[:content], user_id: current_user.id, commentable_type: type, commentable_id: id)
-    flash[:alert] = 'Creation du commentaire'
+    flash[:success] = 'Creation du commentaire réussi'
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:alert] = 'Supression du commentaire'
+    flash[:success] = 'Supression du commentaire réussi'
     redirect_back(fallback_location: root_path)
   end
 
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
 
     @comment.content = params[:content]
     @comment.save # essaie de sauvegarder en base @gossip
-    flash[:alert] = 'Mise à jour du commentaire'
+    flash[:success] = 'Mise à jour du commentaire réussi'
     redirect_to "/gossips/#{id}"
 
   end

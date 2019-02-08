@@ -16,4 +16,4 @@ Pour lancer le projet ecrivez dans votre terminal à la racine du projet:
 
 `rails s`
 
-`firefox http://localhost:3000/`
+`firefox http://localhost:3000/`    

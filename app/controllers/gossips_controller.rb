@@ -17,10 +17,16 @@ class GossipsController < ApplicationController
 
     if @gossip.save # essaie de sauvegarder en base @gossip
       @gossips = Gossip.all
-      render :index
+      flash[:success] = "Nouveau potin créé"
+      redirect_to gossips_path
     else
       @tags = Tag.all
       @users = User.all
+      msg = "<p>Nous n'avons pas créer à modifier le potin pour la (ou les) raison(s) suivante(s) :</p><hr><ul>"
+      @gossip.errors.full_messages.each do |message|
+        msg = msg + "<li>" + message + "</li>"
+      end
+      flash.now[:danger] =  msg + "</ul>"
       render :new
     end
     
@@ -43,7 +49,7 @@ class GossipsController < ApplicationController
   def destroy
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
-    flash[:alert] = 'Supression du potin'
+    flash[:success] = 'Supression du potin réussi'
     redirect_to gossips_path
 
   end
@@ -55,9 +61,15 @@ class GossipsController < ApplicationController
 
     if @gossip.save # essaie de sauvegarder en base @gossip
       @gossips = Gossip.order(:id)
-      render :index  
+      flash[:success] = 'Mise à jour du potin réussi'
+      redirect_to gossips_path
     else
       @users = User.all
+      msg = "<p>Nous n'avons pas réussi à modifier le potin pour la (ou les) raison(s) suivante(s) :</p><hr><ul>"
+      @gossip.errors.full_messages.each do |message|
+        msg = msg + "<li>" + message + "</li>"
+      end
+      flash.now[:danger] =  msg + "</ul>"
       render :edit
     end
 

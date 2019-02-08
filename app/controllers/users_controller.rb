@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
         if @user.save # essaie de sauvegarder en base @user      
             log_in(@user)
-            flash[:alert] = 'Connexion et inscription'
+            flash[:success  ] = 'Connexion et inscription réussis'
             redirect_to gossips_path
         else
             @cities = City.all
