@@ -21,3 +21,7 @@ Pour lancer le projet ecrivez dans votre terminal à la racine du projet:
 Vous pouver vous connecter avec les identifiants suivants :
 
 thomas.feral@mail.com // motdepasse
+
+OU sur serveur de production
+
+https://gossipprojectthomas.herokuapp.com/
