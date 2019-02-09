@@ -16,7 +16,6 @@ class GossipsController < ApplicationController
     @gossip.tags << Tag.find(params[:tag])
 
     if @gossip.save # essaie de sauvegarder en base @gossip
-      @gossips = Gossip.all
       flash[:success] = "Nouveau potin créé"
       redirect_to gossips_path
     else

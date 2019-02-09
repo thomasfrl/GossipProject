@@ -1,0 +1,11 @@
+<h2>Nouvelle conservation   </h2>
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+    <%= label_tag 'Destinataire' %>
+    <%=select_tag 'recipient', options_for_select(@users.collect{ |u| [u.name, u.id] }), class: 'form-control' %>   
+    <br /> <br />
+    <%= label_tag 'Nouveau message' %>
+    <%= text_field_tag 'content', nil, class: 'form-control' %>
+    <br />
+    <%= submit_tag "Envoyer" , class: 'btn btn-primary'%>
+<% end %>

@@ -5,10 +5,21 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage", dependent: :destroy
   has_many :likes
-  has_many :multi_pms, dependent: :destroy
-  has_many :private_messages, through: :multi_pms
+  has_many :conversations, foreign_key: 'participant1', dependent: :destroy
+  has_many :conversations, foreign_key: 'participant2', dependent: :destroy
+
   def name
     "#{self.first_name} #{last_name}"
+  end
+
+  def conversations
+    conversations = []
+    Conversation.all.each do |conversation|
+      if conversation.participants.include?(self)
+        conversations << conversation
+      end
+    end
+    return conversations
   end
 
   validates :email,

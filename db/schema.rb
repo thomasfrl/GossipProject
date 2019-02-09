@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_205602) do
+ActiveRecord::Schema.define(version: 2019_02_09_150030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 2019_02_07_205602) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "participant1_id"
+    t.bigint "participant2_id"
+    t.index ["participant1_id"], name: "index_conversations_on_participant1_id"
+    t.index ["participant2_id"], name: "index_conversations_on_participant2_id"
+  end
+
   create_table "gossips", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -45,16 +52,11 @@ ActiveRecord::Schema.define(version: 2019_02_07_205602) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "multi_pms", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "private_message_id"
-    t.index ["private_message_id"], name: "index_multi_pms_on_private_message_id"
-    t.index ["user_id"], name: "index_multi_pms_on_user_id"
-  end
-
   create_table "private_messages", force: :cascade do |t|
     t.text "content"
     t.bigint "sender_id"
+    t.bigint "conversation_id"
+    t.index ["conversation_id"], name: "index_private_messages_on_conversation_id"
     t.index ["sender_id"], name: "index_private_messages_on_sender_id"
   end
 
@@ -81,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_205602) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "multi_pms", "users"
   add_foreign_key "tags_by_potins", "gossips"
   add_foreign_key "tags_by_potins", "tags"
   add_foreign_key "users", "cities"

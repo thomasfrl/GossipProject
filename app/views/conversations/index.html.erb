@@ -1,0 +1,16 @@
+<a href="/conversations/new" class="btn btn-primary">Nouvelle Conversation </a>
+    <br /> <br />
+
+<h3>Voici toutes vos conversations :</h3>
+<% @conversations.each do |conversation|%>
+  <%participant = participant(conversation)%>  
+  <%= link_to(conversation_path(conversation.id), method: :get, :class => 'm-2') do %>
+    <div class="card p-2 m-2">
+      <div class="card-body">
+        <h5 class="card-title"><%=participant.name%></h5>
+        <hr>
+        <p class="card-text"><%=conversation.last_message.content%>.</p>
+      </div>
+    </div>
+  <%end%>
+<%end%>

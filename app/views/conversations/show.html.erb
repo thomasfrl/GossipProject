@@ -1,0 +1,31 @@
+<h2>Votre conversation avec <%=@participant.name%></h2>
+<div class="clearfix">
+    <% @messages.each do |message|%>
+        <%if message.sender == current_user%>
+            <%style = "float-left bg-primary"%>
+        <%else%>
+            <%style = "float-right bg-success"%>
+        <%end%>
+        <div class="card p-2 m-2 col-8 <%=style%>">
+            <div class="card-body">
+                <p class="card-text"><%=message.content%>.</p>
+                <footer class="blockquote-footer">
+                    <small class="text-muted">
+                        <cite title="Source Title"><%=message.sender.name%></cite>
+                    </small>
+                </footer>
+            </div>
+        </div>  
+    <%end%>
+</div>
+    <br /> <br />
+<%= form_tag(conversation_private_messages_path(@conversation.id), method: "post") do %>
+
+    <%= label_tag 'Nouveau message' %>
+    <%= text_field_tag 'content', nil, class: 'form-control' %>
+    <br />
+    <%= submit_tag "Envoyer" , class: 'btn btn-primary'%>
+
+<% end %>
+
+
