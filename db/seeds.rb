@@ -5,16 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-=begin
+
 TagsByPotin.destroy_all
 Like.destroy_all
 Gossip.destroy_all
 Comment.destroy_all
 User.destroy_all
 PrivateMessage.destroy_all
+Conversation.destroy_all
 City.destroy_all
 Tag.destroy_all
-=end
+
 #Create City
 
 5.times do
