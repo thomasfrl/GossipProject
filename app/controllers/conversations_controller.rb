@@ -3,9 +3,6 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = current_user.conversations
-    puts "$"*60
-    tp @conversations
-    puts "$"*60
   end
 
   def new

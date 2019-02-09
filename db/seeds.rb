@@ -47,8 +47,10 @@ puts "Gossips created"
   tags_by_potin = TagsByPotin.create!(gossip_id: Gossip.all.ids.sample, tag_id: Tag.all.ids.sample)
 end
 puts "Join table created"
-
+i = 0
 User.all.each do |user|
+  i += 1
+  puts i
   3.times do
     conversation = Conversation.new(participant1_id: user.id, participant2_id:User.all.reject{|u| user == u}.sample.id)
     while conversation.already_exist?
