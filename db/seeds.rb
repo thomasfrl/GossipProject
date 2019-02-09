@@ -33,6 +33,7 @@ puts "Tags created"
 10.times do |i|
   user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , description: Faker::HowIMetYourMother.quote, email: "#{Faker::Internet.email}#{i}", age: Faker::Number.between(18, 75), city_id: City.all.ids.sample, password: "motdepasse")
 end
+user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , description: Faker::HowIMetYourMother.quote, email: "thomas.feral@mail.com", age: Faker::Number.between(18, 75), city_id: City.all.ids.sample, password: "motdepasse")
 puts "Users created"
 
 #Create Gossip
