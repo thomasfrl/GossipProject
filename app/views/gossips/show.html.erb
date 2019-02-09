@@ -60,10 +60,11 @@
                 <%= text_area_tag 'content', @comment.content, class: 'form-control' %>
                 <br />
                 <%= submit_tag "Publier" , class: 'btn btn-primary'%>
-
             <% end %>
-            <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
-            <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+            <%if current_user == comment.user%>
+                <a href="/comments/<%=comment.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
+                <a href="/comments/<%=comment.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+            <%end%>
             <%= link_to(comment_likes_path(comment.id), method: :post, :class => 'm-2 ') do %>
                 <i class='fas fa-thumbs-up' style='font-size:48px;color:blue'></i>
             <% end %>
@@ -85,8 +86,10 @@
                 </footer>
             </blockquote>
             <div class="d-flex align-items-center">
-                <a href="/comments/<%=c.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
-                <a href="/comments/<%=c.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+                <%if current_user == c.user%>
+                    <a href="/comments/<%=c.id%>/edit" class="btn btn-warning m-1">Editer le commentaire</a>
+                    <a href="/comments/<%=c.id%>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce commentaire" data-method="DELETE">Supprimer le commentaire</a>
+                <%end%>
                 <%= link_to(comment_likes_path(c.id), method: :post, :class => 'm-2 ') do %>
                     <i class='fas fa-thumbs-up' style='font-size:48px;color:blue'></i>
                 <% end %>

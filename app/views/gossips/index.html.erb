@@ -17,9 +17,13 @@
           Ce potin a été écrit par cette balance de <%=gossip.user.name%>.
         </p>
         <div class="d-flex flex-wrap">
-          <a href="/gossips/<%=gossip.id%>" class="btn btn-primary m-1">Voir le potin<a>
-          <a href="<%=edit_gossip_path(gossip.id)%>" class="btn btn-warning m-1">Editer le potin</a>
-          <a href="<%=gossip_path(gossip.id) %>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Suprimer le potin</a>
+          <%if session[:user_id] != nil%>
+            <a href="/gossips/<%=gossip.id%>" class="btn btn-primary m-1">Voir le potin<a>
+          <%end%>
+          <%if current_user == gossip.user%>
+            <a href="<%=edit_gossip_path(gossip.id)%>" class="btn btn-warning m-1">Editer le potin</a>
+            <a href="<%=gossip_path(gossip.id) %>" class="btn btn-danger m-1" data-confirm="Voulez-vous vraiment supprimer ce potin" data-method="DELETE">Suprimer le potin</a>
+          <%end%>
         </div>
       </div>
     </div>
